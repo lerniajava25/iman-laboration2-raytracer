@@ -53,7 +53,10 @@ public class Vector3D {
     }
 
     public double length() {
-        return Math.sqrt(dot(this));
+        return Math.hypot(
+                Math.hypot(x, y),
+                z
+        );
     }
 
     public Vector3D normalize() {
