@@ -29,6 +29,14 @@ public class HitRecord {
             );
         }
 
+        if (!Double.isFinite(normal.getX())
+                || !Double.isFinite(normal.getY())
+                || !Double.isFinite(normal.getZ())) {
+            throw new IllegalArgumentException(
+                    "Hit normal must contain only finite values."
+            );
+        }
+
         if (color == null) {
             throw new IllegalArgumentException(
                     "Hit color cannot be null."
