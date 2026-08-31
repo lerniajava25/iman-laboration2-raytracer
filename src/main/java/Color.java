@@ -51,7 +51,16 @@ public class Color {
     }
 
     private double clamp(double value) {
-        return Math.max(0.0, Math.min(1.0, value));
+        if (Double.isNaN(value)) {
+            throw new IllegalArgumentException(
+                    "Color value cannot be NaN."
+            );
+        }
+
+        return Math.max(
+                0.0,
+                Math.min(1.0, value)
+        );
     }
 
     @Override
