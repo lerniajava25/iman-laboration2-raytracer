@@ -2,8 +2,6 @@ import java.util.Optional;
 
 public class Sphere extends Shape {
 
-    private static final double EPSILON = 1e-9;
-
     private final Vector3D center;
     private final double radius;
 
@@ -53,12 +51,18 @@ public class Sphere extends Shape {
         Vector3D originToCenter =
                 ray.getOrigin().subtract(center);
 
-        Vector3D direction = ray.getDirection();
+        Vector3D direction =
+                ray.getDirection();
 
-        double a = direction.dot(direction);
-        double halfB = originToCenter.dot(direction);
-        double c = originToCenter.dot(originToCenter)
-                - radius * radius;
+        double a =
+                direction.dot(direction);
+
+        double halfB =
+                originToCenter.dot(direction);
+
+        double c =
+                originToCenter.dot(originToCenter)
+                        - radius * radius;
 
         double discriminant =
                 halfB * halfB - a * c;
@@ -73,10 +77,11 @@ public class Sphere extends Shape {
         double root =
                 (-halfB - squareRoot) / a;
 
-        if (root <= EPSILON) {
-            root = (-halfB + squareRoot) / a;
+        if (root <= 0.0) {
+            root =
+                    (-halfB + squareRoot) / a;
 
-            if (root <= EPSILON) {
+            if (root <= 0.0) {
                 return Optional.empty();
             }
         }
