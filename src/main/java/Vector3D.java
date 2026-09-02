@@ -52,6 +52,21 @@ public class Vector3D {
                 + z * other.z;
     }
 
+    public Vector3D cross(Vector3D other) {
+
+        if (other == null) {
+            throw new IllegalArgumentException(
+                    "Vector cannot be null."
+            );
+        }
+
+        return new Vector3D(
+                y * other.z - z * other.y,
+                z * other.x - x * other.z,
+                x * other.y - y * other.x
+        );
+    }
+
     public double length() {
         return Math.hypot(
                 Math.hypot(x, y),
