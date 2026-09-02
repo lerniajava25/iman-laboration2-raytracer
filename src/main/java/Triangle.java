@@ -31,6 +31,8 @@ public class Triangle extends Shape {
 
         Vector3D normal = edge1.cross(edge2);
 
+        validateFinite(normal, "triangle normal");
+
         if (normal.length() <= EPSILON) {
             throw new IllegalArgumentException(
                     "Triangle vertices must not be collinear."
@@ -82,6 +84,7 @@ public class Triangle extends Shape {
         }
 
         Vector3D q = s.cross(edge1);
+
         double v =
                 inverseDeterminant
                         * ray.getDirection().dot(q);
