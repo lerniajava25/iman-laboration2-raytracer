@@ -26,7 +26,18 @@ public class Main {
 
         File outputFile = new File("render.png");
 
-        ImageIO.write(image, "png", outputFile);
+        boolean imageWritten =
+                ImageIO.write(
+                        image,
+                        "png",
+                        outputFile
+                );
+
+        if (!imageWritten) {
+            throw new IOException(
+                    "Kunde inte spara bilden eftersom ingen PNG-writer hittades."
+            );
+        }
 
         System.out.println("Rendering klar!");
         System.out.println("Bilden har sparats här:");
